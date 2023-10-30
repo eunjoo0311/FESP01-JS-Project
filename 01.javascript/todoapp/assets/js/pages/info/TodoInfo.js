@@ -47,6 +47,7 @@ const TodoInfo = async function ({ _id } = {}) {
 
       const li2 = document.createElement("div");
       const text2 = document.createTextNode(`${item}`);
+
       li2.appendChild(text2);
       ul2.appendChild(li2);
     }
@@ -61,6 +62,7 @@ const TodoInfo = async function ({ _id } = {}) {
   const btnContainer = document.createElement("div");
   const btnHome = document.createElement("button");
   const btnHomeTitle = document.createTextNode("뒤로가기");
+
   btnHome.appendChild(btnHomeTitle);
   btnContainer.appendChild(btnHome);
 
@@ -69,11 +71,13 @@ const TodoInfo = async function ({ _id } = {}) {
     console.log(toDoListPage);
     document.querySelector("#page").replaceWith(toDoListPage);
   });
+
   btnContainer.appendChild(btnHome);
 
   //삭제버튼
   const btnDelete = document.createElement("button");
   const btnDeleteTitle = document.createTextNode("삭제");
+
   btnDelete.appendChild(btnDeleteTitle);
   btnContainer.appendChild(btnDelete);
 
@@ -88,6 +92,7 @@ const TodoInfo = async function ({ _id } = {}) {
       console.error(error);
     }
   });
+
   content.append(btnContainer);
 
   btnHome.setAttribute("class", "btnHome");

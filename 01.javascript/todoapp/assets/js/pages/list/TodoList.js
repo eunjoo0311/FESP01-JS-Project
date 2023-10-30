@@ -49,7 +49,7 @@ const TodoList = async function(){
         try {
           // API 업데이트 요청 보내기
           await axios.patch(
-            `http://localhost:33088/api/todolist/${item._id}`, { done: isChecked });
+            `${ BASE_URL }/api/todolist/${item._id}`, { done: isChecked });
 
           item.done = isChecked;
 
