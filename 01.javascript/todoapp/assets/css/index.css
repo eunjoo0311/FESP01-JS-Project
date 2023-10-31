@@ -44,6 +44,10 @@ button {
   justify-content: start;
 }
 
+#titleArea {
+width: 80%;
+}
+
 li:hover {
   background-color: #bfbebe;
   cursor: pointer;
