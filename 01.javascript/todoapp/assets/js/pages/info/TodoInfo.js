@@ -54,6 +54,7 @@ const TodoInfo = async function ({ _id } = {}) {
           li2Child.addEventListener("click", (e) => {
             const inputElem = document.createElement("input");
             inputElem.setAttribute("class", "editInput");
+            inputElem.setAttribute("maxlength", "34");
             const inputText = e.target.innerText;
             inputElem.value = inputText;
             li2.innerHTML = "";
@@ -81,6 +82,7 @@ const TodoInfo = async function ({ _id } = {}) {
   const container = document.createElement("div");
   const ul1 = document.createElement("div");
   const ul2 = document.createElement("div");
+
   container.appendChild(ul1);
   container.appendChild(ul2);
   content.appendChild(container);
@@ -144,9 +146,10 @@ const TodoInfo = async function ({ _id } = {}) {
 
   btnHome.setAttribute("class", "btnHome");
   btnDelete.setAttribute("class", "btnDelete");
+  btnTodoEdit.setAttribute("class", "btnHome");
   btnContainer.setAttribute("class", "btnContainer");
 
-  page.appendChild(Header("TODO App 상세 조회"));
+  page.appendChild(Header("TodoList"));
   page.appendChild(content);
   page.appendChild(Footer());
 
