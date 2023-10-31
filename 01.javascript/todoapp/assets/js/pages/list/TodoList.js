@@ -67,17 +67,22 @@ const TodoList = async () => {
         }
       });
 
+      //NOTE - 투두 제목 
+      const titleArea = document.createElement('div');
       const title = document.createTextNode(item.title);
+      titleArea.setAttribute('id', 'titleArea');
+      titleArea.appendChild(title);
 
-      li.addEventListener('click', async () => {
-        const infoPage = await TodoInfo({ _id: item._id });
-        document.querySelector('#page').replaceWith(infoPage);
-      })
-
+      //NOTE - 체크박스와 title li에 삽입 
       li.appendChild(checkbox);
       li.appendChild(checkboxLable);
-      li.appendChild(title);
+      li.appendChild(titleArea);
       ul.appendChild(li);
+
+      titleArea.addEventListener('click', async () => {
+          const infoPage = await TodoInfo({ _id: item._id });
+          document.querySelector('#page').replaceWith(infoPage);
+      });
     });
 
     content.appendChild(ul);
