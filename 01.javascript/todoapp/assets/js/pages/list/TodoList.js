@@ -4,7 +4,7 @@ import Footer from '../../layout/Footer.js';
 import TodoRegist from '../regist/TodoRegist.js';
 import TodoInfo from '../info/TodoInfo.js';
 
-const TodoList = async function(){
+const TodoList = async () => {
   //NOTE -base url 상수로 지정
   const BASE_URL = 'http://localhost:33088';
 
@@ -27,23 +27,23 @@ const TodoList = async function(){
 
     response.data?.items.forEach(item => {
       const li = document.createElement('li');
-
+      li.setAttribute('id', `list_${ item._id }`);
       /**
        * //NOTE - 체크 박스 누르면 완료 표시 되도록 patch로 요청 보내고
        * //NOTE - 게시물의 done 프로퍼티의 값이 true 거나 false일때 완료 표시 혹은 표시 x
        */
       const checkbox = document.createElement('input');
       const checkboxLable = document.createElement('label');
-      checkboxLable.setAttribute('for', `checkbox_${item._id}`);
+      checkboxLable.setAttribute('for', `checkbox_${ item._id }`);
       checkbox.setAttribute('type', 'checkbox');
-      checkbox.setAttribute('id', `checkbox_${item._id}`);
+      checkbox.setAttribute('id', `checkbox_${ item._id }`);
       checkbox.checked = item.done;
 
       if (item.done) {
         li.style.textDecoration = 'line-through';
       }
 
-      checkbox.addEventListener('change', async function (event) {
+      checkbox.addEventListener('change', async (event) => {
         const isChecked = checkbox.checked;
 
         try {
@@ -61,28 +61,22 @@ const TodoList = async function(){
             item.done = true;
             event.target.parentNode.style.textDecoration = 'none';
           }
-        } catch (error) {
+        } 
+        catch (error) {
           console.error('API 업데이트에 실패했습니다:', error);
         }
       });
 
-      //NOTE - 게시물 상세 페이지로 이동할 수 있는 link 이벤트
-      const todoInfoLink = document.createElement('a');
-      todoInfoLink.setAttribute('href', `info?_id=${item._id}`);
-
       const title = document.createTextNode(item.title);
 
-      todoInfoLink.addEventListener('click', async function (event) {
-        event.preventDefault();
+      li.addEventListener('click', async () => {
         const infoPage = await TodoInfo({ _id: item._id });
         document.querySelector('#page').replaceWith(infoPage);
-      });
+      })
 
       li.appendChild(checkbox);
       li.appendChild(checkboxLable);
-      li.appendChild(todoInfoLink);
-      todoInfoLink.appendChild(title);
-
+      li.appendChild(title);
       ul.appendChild(li);
     });
 
@@ -107,6 +101,7 @@ const TodoList = async function(){
   page.appendChild(registButtonBox);
   page.appendChild(content);
   page.appendChild(Footer());
+
   return page;
 };
 
