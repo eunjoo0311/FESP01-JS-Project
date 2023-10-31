@@ -23,10 +23,6 @@
   letter-spacing: -0.6px;
   width: 80%;
 }
-.todolistContent:nth-child(3) {
-  height: 40px;
-  background-color: #2e78e7;
-}
 
 .todolistContainer {
   display: flex;
@@ -34,6 +30,16 @@
   width: 80%;
   gap: 34px;
   margin: 54px auto 0;
+}
+
+.todolistContent .editInput {
+  border: 1px solid #616161;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  align-content: space-around;
+  align-items: baseline;
 }
 
 .todolistDetailContainer {

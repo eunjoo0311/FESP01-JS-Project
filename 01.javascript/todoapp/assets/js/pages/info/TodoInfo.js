@@ -43,11 +43,17 @@ const TodoInfo = async function ({ _id } = {}) {
         ul1.appendChild(li1);
 
         const li2 = document.createElement("div");
+        const li2Child = document.createElement("span");
         const text2 = document.createTextNode(`${item}`);
 
+        li2Child.appendChild(text2);
+        li2.appendChild(li2Child);
+        ul2.appendChild(li2);
+
         if (substituteKeyName === "제목" || substituteKeyName === "내용") {
-          li2.addEventListener("click", (e) => {
+          li2Child.addEventListener("click", (e) => {
             const inputElem = document.createElement("input");
+            inputElem.setAttribute("class", "editInput");
             const inputText = e.target.innerText;
             inputElem.value = inputText;
             li2.innerHTML = "";
@@ -58,22 +64,15 @@ const TodoInfo = async function ({ _id } = {}) {
               inputElem.addEventListener("change", () => {
                 newText = inputElem.value;
                 const textNode = document.createTextNode(newText);
-                li2.innerHTML = "";
-                li2.appendChild(textNode);
               });
             } else {
               inputElem.addEventListener("change", () => {
                 newText2 = inputElem.value;
                 const textNode = document.createTextNode(newText2);
-                li2.innerHTML = "";
-                li2.appendChild(textNode);
               });
             }
           });
         }
-
-        li2.appendChild(text2);
-        ul2.appendChild(li2);
       }
     }
   };
